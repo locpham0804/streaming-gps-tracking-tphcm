@@ -31,13 +31,24 @@
       <h1 style="margin-bottom: unset">{{PAGE_TITLE}}</h1>
 
       <!--Toggle button to control the display of the tooltips with unit informations -->
-      <div style="display: flex; align-items: center">
-        <h2>Unit Details:</h2>
-        <label class="toggle">
-          <input type="checkbox" onclick="toggle_button()" id="toggle_button" value="0" />
-          <!-- <label data-off="&#10006;" data-on="&#10004;"></label> -->
-          <span class="slider round"></span>
-        </label>
+      <div style="display: flex; align-items: center; justify-content: space-evenly; width: 500px">
+        <div style="display: flex; align-items: center; text-align: center">
+          <h2>Unit Details:</h2>
+          <label class="toggle">
+            <input type="checkbox" onclick="toggle_button()" id="toggle_button" value="0" />
+            <!-- <label data-off="&#10006;" data-on="&#10004;"></label> -->
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div style="display: flex; align-items: center; text-align: center">
+          <h2>Unit Filter:</h2>
+          <select name="" onchange="toggle_filter(value)" id="filter-option">
+            <option value="all">All</option>
+            <option value="grab">Grab</option>
+            <option value="gojek">Gojek</option>
+          </select>
+        </div>
       </div>
     </div>
 
@@ -61,5 +72,6 @@
     <script src="../static/js/utils.js"></script>
     <!-- load the map and manage events relative to -->
     <script src="../static/js/map.js"></script>
+    <script></script>
   </body>
 </html>

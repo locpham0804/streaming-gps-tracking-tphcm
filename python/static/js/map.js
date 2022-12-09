@@ -17,6 +17,8 @@ var markers = {};
 var marker_colors = {};
 // Marker tooltips initial display option
 var display_tooltips = false;
+// Filter services display
+var display_services = "visible";
 
 // A demo and usage of various free tile providers can be found here:
 // https://leaflet-extras.github.io/leaflet-providers/preview/
@@ -37,7 +39,6 @@ source.addEventListener(
   function (e) {
     // Parse received data as a JSON object
     obj = JSON.parse(e.data);
-    console.log(obj);
 
     // Before plotting a unit check if this one was not already plot
     if (obj.service in markers) {
@@ -61,10 +62,20 @@ source.addEventListener(
       marker_color = obj.color;
     } else marker_color = marker_colors[obj.service];
 
+    // Filter By Service
+    if (
+      document.getElementById("filter-option").value !== "all" &&
+      obj.service !== document.getElementById("filter-option").value
+    ) {
+      display_services = "hidden-mark";
+    } else {
+      display_services = "";
+    }
+
     // Plot the new position of the new received unit position
     markers[obj.service][obj.unit] = L.marker([obj.latitude, obj.longitude], {
       icon: L.divIcon({
-        className: "custom_pin",
+        className: "custom_pin" + "_" + obj.service + " " + display_services,
         iconAnchor: [0, 24],
         labelAnchor: [-6, 0],
         popupAnchor: [0, -36],
@@ -90,5 +101,33 @@ function toggle_button() {
   } else {
     document.getElementById("toggle_button").value = "ON";
     display_tooltips = true;
+  }
+}
+
+function toggle_filter(value) {
+  var grabArr = document.getElementsByClassName("custom_pin_grab");
+  var gojekArr = document.getElementsByClassName("custom_pin_gojek");
+  if (value == "grab") {
+    for (let item of gojekArr) {
+      item.classList.add("hidden-mark");
+    }
+    for (let item of grabArr) {
+      item.classList.remove("hidden-mark");
+    }
+  } else if (value == "gojek") {
+    const hidArr = document.getElementsByClassName("custom_pin_grab");
+    for (let item of grabArr) {
+      item.classList.add("hidden-mark");
+    }
+    for (let item of gojekArr) {
+      item.classList.remove("hidden-mark");
+    }
+  } else {
+    for (let item of grabArr) {
+      item.classList.remove("hidden-mark");
+    }
+    for (let item of gojekArr) {
+      item.classList.remove("hidden-mark");
+    }
   }
 }

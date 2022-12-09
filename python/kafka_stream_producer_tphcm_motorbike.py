@@ -20,17 +20,18 @@ producer = topic.get_sync_producer()
 
 #CONSTRUCT MESSAGE AND SEND IT TO KAFKA
 data = {}
-data['service'] = 'alpha'
 
 def generate_checkpoint(coordinates):
     i = 0
     while i < len(coordinates):
-        data['key'] = data['service'] + '_' + str(generate_uuid())
+        data['key'] = coordinates[i]['service'] + '_' + str(generate_uuid())
         data['datetime'] = str(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"))
         data['unit'] = coordinates[i]['unit']
         data['latitude'] = coordinates[i]['coordinates'][0]
         data['longitude'] = coordinates[i]['coordinates'][1]
         data['color'] = coordinates[i]['color']
+        data['service'] = coordinates[i]['service']
+        
         message = json.dumps(data)
         print(message)
         producer.produce(message.encode('ascii'))
