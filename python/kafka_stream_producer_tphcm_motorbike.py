@@ -14,8 +14,8 @@ def generate_uuid():
     return uuid.uuid4()
 
 #KAFKA PRODUCER
-client = KafkaClient(hosts="127.18.0.3:29092")
-topic = client.topics['geodata_stream_topic_123']
+client = KafkaClient(hosts="127.18.0.3:9092")
+topic = client.topics['tphcm_geodata_gps']
 producer = topic.get_sync_producer()
 
 #CONSTRUCT MESSAGE AND SEND IT TO KAFKA

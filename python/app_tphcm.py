@@ -4,7 +4,7 @@ from pykafka.common import OffsetType
 
 
 def get_kafka_client():
-    return KafkaClient(hosts='127.18.0.3:29092')
+    return KafkaClient(hosts='127.18.0.3:9092')
 
 app = Flask(__name__)
 
@@ -19,7 +19,7 @@ def index():
     MAP_STARTING_ZOOM = 14;
     MAP_MAX_ZOOM = 18;
 
-    KAFKA_TOPIC = 'geodata_stream_topic_123'
+    KAFKA_TOPIC = 'tphcm_geodata_gps'
     # https://stackoverflow.com/questions/12096522/render-template-with-multiple-variables
     return(render_template('index.html', **locals()))
 
