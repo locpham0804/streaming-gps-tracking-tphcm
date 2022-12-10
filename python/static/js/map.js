@@ -87,7 +87,11 @@ source.addEventListener(
       "Service: " + obj.service + "<br>Unit: " + obj.unit + "<br>Datetime: " + obj.datetime,
       {
         // For a permanent display of the unit tooltip
-        permanent: display_tooltips,
+        permanent:
+          obj.service == document.getElementById("filter-option").value ||
+          document.getElementById("filter-option").value == "all"
+            ? display_tooltips
+            : false,
       }
     );
   },
