@@ -2,9 +2,13 @@
 
 ## Tech
 
+Simple use of kafka to create real time tracking GPS.
+
 ![GPS_Tracking_pipeline](/gps_pipeline.PNG)
 
 ## Features
+
+Web UI with display unit details and filter unit for each services.
 
 ![GPS_Tracking_gif](/gps_track.gif)
 
