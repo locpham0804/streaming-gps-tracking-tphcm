@@ -2,7 +2,11 @@
 
 ## Tech
 
+
+
 ## Features
+
+![GPS_Tracking_gif](/gps_track.gif)
 
 ## Installation
 
